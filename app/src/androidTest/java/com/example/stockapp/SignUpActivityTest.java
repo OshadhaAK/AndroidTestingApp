@@ -10,6 +10,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -42,4 +43,39 @@ public class SignUpActivityTest {
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void testEmptyUserName(){
+        onView(withId(R.id.emailAddress)).perform(typeText("oshadhak@hsenidmobile.com"),closeSoftKeyboard());
+        onView(withId(R.id.phoneNum)).perform(typeText("94722256971"),closeSoftKeyboard());
+        onView(withId(R.id.addPassword)).perform(typeText("admin"),closeSoftKeyboard());
+        onView(withId(R.id.btnSignup)).perform(click());
+        onView(withId(R.id.user_name)).check(matches(hasErrorText("Cannot be empty!")));
+    }
+
+    @Test
+    public void testEmptyEmail(){
+        onView(withId(R.id.user_name)).perform(typeText("Oshadha"),closeSoftKeyboard());
+        onView(withId(R.id.phoneNum)).perform(typeText("94722256971"),closeSoftKeyboard());
+        onView(withId(R.id.addPassword)).perform(typeText("admin"),closeSoftKeyboard());
+        onView(withId(R.id.btnSignup)).perform(click());
+        onView(withId(R.id.emailAddress)).check(matches(hasErrorText("Cannot be empty!")));
+    }
+
+    @Test
+    public void testEmptyPhoneNumber(){
+        onView(withId(R.id.user_name)).perform(typeText("Oshadha"),closeSoftKeyboard());
+        onView(withId(R.id.emailAddress)).perform(typeText("oshadhak@hsenidmobile.com"),closeSoftKeyboard());
+        onView(withId(R.id.addPassword)).perform(typeText("admin"),closeSoftKeyboard());
+        onView(withId(R.id.btnSignup)).perform(click());
+        onView(withId(R.id.phoneNum)).check(matches(hasErrorText("Cannot be empty!")));
+    }
+
+    @Test
+    public void testEmptyPassword(){
+        onView(withId(R.id.user_name)).perform(typeText("Oshadha"),closeSoftKeyboard());
+        onView(withId(R.id.emailAddress)).perform(typeText("oshadhak@hsenidmobile.com"),closeSoftKeyboard());
+        onView(withId(R.id.phoneNum)).perform(typeText("94722256971"),closeSoftKeyboard());
+        onView(withId(R.id.btnSignup)).perform(click());
+        onView(withId(R.id.addPassword)).check(matches(hasErrorText("Cannot be empty!")));
+    }
 }

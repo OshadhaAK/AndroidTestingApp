@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -15,6 +18,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText emailAddress;
     private EditText phoneNumber;
     private EditText password;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +33,35 @@ public class SignUpActivity extends AppCompatActivity {
         signUpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignUpActivity.this,HomeActivity.class);
-                startActivity(intent);
+                if(userName.getText().toString().isEmpty()){
+                    userName.setError("Cannot be empty!");
+                }
+                else if(emailAddress.getText().toString().isEmpty()){
+                    emailAddress.setError("Cannot be empty!");
+                }
+                else if(phoneNumber.getText().toString().isEmpty()){
+                    phoneNumber.setError("Cannot be empty!");
+                }
+                else if(password.getText().toString().isEmpty()){
+                    password.setError("Cannot be empty!");
+                }
+                else {
+                    if (emailAddress.getText().toString().trim().matches(emailPattern)){
+                        Toast.makeText(getApplicationContext(),"Welcome!",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpActivity.this,HomeActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        emailAddress.setError("Invalid email address!");
+                    }
+
+                }
+
             }
         });
+
+
+
+
     }
 }

@@ -34,19 +34,19 @@ public class MainActivityTest {
         onView(withId(R.id.userName)).perform(typeText("admin"),closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText("admin"),closeSoftKeyboard());
         // click button
-        onView(withText("SIGNIN")).perform(click());
+        onView(withId(R.id.SignIn)).perform(click());
 
         // check the home page is visible after click
-        onView(withText("products")).check(matches(isDisplayed()));
+        onView(withId(R.id.imgbtn)).check(matches(isDisplayed()));
     }
     @Test
     public void testSignUpButtonClick(){
 
         // click button
-        onView(withText("SIGNUP")).perform(click());
+        onView(withId(R.id.SignUp)).perform(click());
 
         // check the home page is visible after click
-        onView(withText("SIGNUP")).perform(click());
-        onView(withText("products")).check(matches(isDisplayed()));
+        onView(withId(R.id.btnSignup)).perform(click());
+        onView(withId(R.id.imgbtn)).check(matches(isDisplayed()));
     }
 }

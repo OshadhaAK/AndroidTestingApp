@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,16 +28,25 @@ public class MainActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
-                startActivity(intent);
+
+                    Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
+                    startActivity(intent);
+
+
+
             }
         });
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-                startActivity(intent);
+                if(userName.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                    Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

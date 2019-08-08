@@ -36,10 +36,10 @@ public class SignUpActivityTest {
         onView(withId(R.id.emailAddress)).perform(typeText("oshadhak@hsenidmobile.com"),closeSoftKeyboard());
         onView(withId(R.id.phoneNum)).perform(typeText("+94722256971"),closeSoftKeyboard());
         onView(withId(R.id.addPassword)).perform(typeText("admin"),closeSoftKeyboard());
-        // clear text
-        onView(withText("SIGNUP")).perform(click());
+        // check signup button
+        onView(withId(R.id.btnSignup)).perform(click());
         // check the home page is visible after click
-        onView(withText("products")).check(matches(isDisplayed()));
+        onView(withId(R.id.imgbtn)).check(matches(isDisplayed()));
     }
 
 }

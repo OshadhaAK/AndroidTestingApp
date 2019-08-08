@@ -78,4 +78,14 @@ public class SignUpActivityTest {
         onView(withId(R.id.btnSignup)).perform(click());
         onView(withId(R.id.addPassword)).check(matches(hasErrorText("Cannot be empty!")));
     }
+
+    @Test
+    public void testEmailValidation(){
+        onView(withId(R.id.user_name)).perform(typeText("Oshadha"),closeSoftKeyboard());
+        onView(withId(R.id.emailAddress)).perform(typeText("oshadhak@.com"),closeSoftKeyboard());
+        onView(withId(R.id.phoneNum)).perform(typeText("94722256971"),closeSoftKeyboard());
+        onView(withId(R.id.addPassword)).perform(typeText("admin"),closeSoftKeyboard());
+        onView(withId(R.id.btnSignup)).perform(click());
+        onView(withId(R.id.emailAddress)).check(matches(hasErrorText("Invalid email address!")));
+    }
 }

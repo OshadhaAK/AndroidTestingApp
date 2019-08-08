@@ -44,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                     startActivity(intent);
                 }
+                else if (userName.getText().toString().equals("") || password.getText().toString().equals("")){
+                    if(userName.getText().toString().equals("")){
+                        userName.setError("Cannot be empty!");
+                    }
+                    else if (password.getText().toString().equals("")){
+                        password.setError("Cannot be empty!");
+                    }
+
+                }
                 else {
                     Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_SHORT).show();
                 }

@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         productList.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        for (int i=0;i<20;i++){
+        for (int i=1;i<=20;i++){
             list.add("Product " + i);
         }
 

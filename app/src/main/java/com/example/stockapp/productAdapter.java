@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,11 +42,13 @@ public class productAdapter extends RecyclerView.Adapter<productAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView textView;
+        Button button;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.row);
+            button = (Button) itemView.findViewById(R.id.rowButton);
         }
     }
 }

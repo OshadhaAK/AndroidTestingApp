@@ -39,7 +39,7 @@ public class SignUpActivityTest {
         // check signup button
         onView(withId(R.id.btnSignup)).perform(click());
         // check the home page is visible after click
-        onView(withId(R.id.imgbtn)).check(matches(isDisplayed()));
+        onView(withId(R.id.productList)).check(matches(isDisplayed()));
     }
 
 }

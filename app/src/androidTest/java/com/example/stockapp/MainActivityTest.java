@@ -37,8 +37,9 @@ public class MainActivityTest {
         onView(withId(R.id.SignIn)).perform(click());
 
         // check the home page is visible after click
-        onView(withId(R.id.imgbtn)).check(matches(isDisplayed()));
+        onView(withId(R.id.productList)).check(matches(isDisplayed()));
     }
+
     @Test
     public void testSignUpButtonClick(){
 
@@ -47,6 +48,6 @@ public class MainActivityTest {
 
         // check the home page is visible after click
         onView(withId(R.id.btnSignup)).perform(click());
-        onView(withId(R.id.imgbtn)).check(matches(isDisplayed()));
+        onView(withId(R.id.productList)).check(matches(isDisplayed()));
     }
 }

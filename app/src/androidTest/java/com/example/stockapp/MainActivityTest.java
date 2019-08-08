@@ -14,6 +14,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsNot.not;
 
 public class MainActivityTest {
 
@@ -49,5 +52,13 @@ public class MainActivityTest {
         // check the home page is visible after click
         onView(withId(R.id.btnSignup)).perform(click());
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testToastMessage(){
+        onView(withId(R.id.userName)).perform(typeText("12345"),closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(typeText("admin"),closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText(R.string.message)).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
     }
 }

@@ -1,18 +1,22 @@
 package com.example.stockapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import Models.Product;
+import io.realm.Realm;
+
 public class DetailsActivity extends AppCompatActivity {
 
     private TextView textView;
     private Button button;
     private String product;
+    Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +27,28 @@ public class DetailsActivity extends AppCompatActivity {
         product = intent.getStringExtra("message");
         textView = (TextView)findViewById(R.id.textView);
         button = (Button)findViewById(R.id.addToCart);
-
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
         textView.setText("Product Name : " +product+ "\nDate of manufacture : \nDate of expiry : \nprice : ");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                realm.beginTransaction();
+                Product obj = realm.createObject(Product.class);
+
+                obj.setProductName(product);
+                obj.setPrice(50);
+                obj.setDateOfExpire("7/8/2015");
+                obj.setDataOfManufacture("8/4/2010");
+
+                realm.commitTransaction();
+                finish();
+
                 Intent intent = new Intent(DetailsActivity.this,CheckoutActivity.class);
                 startActivity(intent);
             }
         });
+
+
     }
 }

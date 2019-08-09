@@ -101,7 +101,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.btnCheckout)).perform(click());
 
-        //check transaction succesfull activity
+        //check transaction successfull activity
         onView(withId(R.id.successmsg)).check(matches(isDisplayed()));
 
     }

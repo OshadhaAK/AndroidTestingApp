@@ -39,12 +39,14 @@ public class CheckoutActivity extends AppCompatActivity {
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CheckoutActivity.this,SuccessActivity.class);
-                startActivity(intent);
                 RealmResults<Product> results = realm.where(Product.class).findAll();
                 realm.beginTransaction();
                 results.deleteAllFromRealm();
                 realm.commitTransaction();
+
+                Intent intent = new Intent(CheckoutActivity.this,SuccessActivity.class);
+                startActivity(intent);
+
             }
         });
     }

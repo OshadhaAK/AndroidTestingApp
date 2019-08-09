@@ -54,6 +54,7 @@ public class productAdapter extends RecyclerView.Adapter<productAdapter.ViewHold
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context,DetailsActivity.class);
+                    intent.putExtra("message",textView.getText());
                     context.startActivity(intent);
                 }
             });

@@ -12,15 +12,19 @@ public class DetailsActivity extends AppCompatActivity {
 
     private TextView textView;
     private Button button;
+    private String product;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        Intent intent = getIntent();
+        product = intent.getStringExtra("message");
         textView = (TextView)findViewById(R.id.textView);
         button = (Button)findViewById(R.id.addToCart);
 
-        textView.setText("Product Name : \nDate of manufacture : \nDate of expiry : \nprice : ");
+        textView.setText("Product Name : " +product+ "\nDate of manufacture : \nDate of expiry : \nprice : ");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

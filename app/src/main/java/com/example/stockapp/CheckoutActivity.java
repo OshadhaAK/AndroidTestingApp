@@ -26,8 +26,8 @@ public class CheckoutActivity extends AppCompatActivity {
         cart = (TextView)findViewById(R.id.cardList);
 
         Realm.init(this);
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<Product> products = realm.where(Product.class).findAllAsync();
+        final Realm realm = Realm.getDefaultInstance();
+        final RealmResults<Product> products = realm.where(Product.class).findAllAsync();
 
         products.load();
         String output = "";
@@ -41,6 +41,10 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CheckoutActivity.this,SuccessActivity.class);
                 startActivity(intent);
+                RealmResults<Product> results = realm.where(Product.class).findAll();
+                realm.beginTransaction();
+                results.deleteAllFromRealm();
+                realm.commitTransaction();
             }
         });
     }

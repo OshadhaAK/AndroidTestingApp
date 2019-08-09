@@ -32,7 +32,7 @@ public class CheckoutActivity extends AppCompatActivity {
         products.load();
         String output = "";
         for(Product product:products){
-            output+=product.getProductName().toString()+"\n";
+            output+=product.getProductName()+"\n";
         }
         cart.setText(output+"\n");
 

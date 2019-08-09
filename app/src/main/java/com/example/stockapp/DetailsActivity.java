@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +47,9 @@ public class DetailsActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(DetailsActivity.this,CheckoutActivity.class);
                 startActivity(intent);
+
+                Toast.makeText(getApplicationContext(),"Added to cart!",Toast.LENGTH_SHORT).show();
+
             }
         });
 

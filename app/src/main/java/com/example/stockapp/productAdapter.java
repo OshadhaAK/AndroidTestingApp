@@ -1,6 +1,7 @@
 package com.example.stockapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,13 @@ public class productAdapter extends RecyclerView.Adapter<productAdapter.ViewHold
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.row);
             button = (Button) itemView.findViewById(R.id.rowButton);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context,DetailsActivity.class);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

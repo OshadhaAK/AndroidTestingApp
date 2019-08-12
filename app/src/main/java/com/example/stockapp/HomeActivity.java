@@ -44,11 +44,13 @@ public class HomeActivity extends AppCompatActivity {
         productList.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        getNames();
 
+        getNames();
 
         adapter = new productAdapter(this,list);
         productList.setAdapter(adapter);
+
+
 
     }
 

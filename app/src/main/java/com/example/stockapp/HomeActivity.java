@@ -1,7 +1,10 @@
 package com.example.stockapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     private List<String> list;
     private productAdapter adapter;
     private RequestQueue requestQueue;
+    private ImageButton cartButton;
 
     private String url = "http://172.16.2.139:8081/movies/get-all";
 
@@ -39,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         productList = (RecyclerView)findViewById(R.id.productList);
-
+        cartButton = (ImageButton)findViewById(R.id.cartButton);
 
         productList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -50,7 +54,13 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new productAdapter(this,list);
         productList.setAdapter(adapter);
 
-
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, CheckoutActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

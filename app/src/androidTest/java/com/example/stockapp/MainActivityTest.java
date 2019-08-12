@@ -89,7 +89,7 @@ public class MainActivityTest {
         onView(withId(R.id.productList)).check(matches(isDisplayed()));
 
         //check the view buton
-        onView(withId(R.id.productList)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.productList)).perform(RecyclerViewActions.actionOnItemAtPosition(19, click()));
 
         //check addtocart button exists
         onView(withId(R.id.addToCart)).check(matches(isDisplayed()));

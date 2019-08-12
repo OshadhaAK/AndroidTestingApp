@@ -48,9 +48,9 @@ public class MainActivityTest {
         // click button
         onView(withId(R.id.SignUp)).perform(click());
 
-        // check the home page is visible after click
-        onView(withId(R.id.btnSignup)).perform(click());
-        onView(withId(R.id.productList)).check(matches(isDisplayed()));
+        // check the signup page is visible after click
+
+        onView(withId(R.id.btnSignup)).check(matches(isDisplayed()));
     }
 
     @Test

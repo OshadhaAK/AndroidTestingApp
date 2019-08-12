@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import Models.Product;
 import io.realm.Realm;
@@ -15,7 +19,10 @@ import io.realm.RealmResults;
 public class CheckoutActivity extends AppCompatActivity {
 
     private Button btnCheckout;
-    private TextView cart;
+    private  Button btnBackToHome;
+    private RecyclerView cartList;
+    private List<String>list;
+    private cartAdapter cartAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +30,10 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
 
         btnCheckout = (Button)findViewById(R.id.btnCheckout);
-        cart = (TextView)findViewById(R.id.cardList);
+
+        btnBackToHome = (Button)findViewById(R.id.buttonBackHome);
+        cartList = (RecyclerView)findViewById(R.id.cartList);
+        cartList.setLayoutManager(new LinearLayoutManager(this));
 
         Realm.init(this);
         final Realm realm = Realm.getDefaultInstance();
@@ -31,10 +41,14 @@ public class CheckoutActivity extends AppCompatActivity {
 
         products.load();
         String output = "";
+        list = new ArrayList<>();
         for(Product product:products){
+            list.add(product.getProductName());
             output+=product.getProductName()+"\n";
         }
-        cart.setText(output+"\n");
+
+        cartAdapter = new cartAdapter(this, list);
+        cartList.setAdapter(cartAdapter);
 
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +61,14 @@ public class CheckoutActivity extends AppCompatActivity {
                 Intent intent = new Intent(CheckoutActivity.this,SuccessActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        btnBackToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }

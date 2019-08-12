@@ -8,17 +8,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="306dp"
-        android:layout_height="407dp"
+        android:layout_width="264dp"
+        android:layout_height="287dp"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="69dp"
-        android:layout_marginBottom="370dp"
         android:ellipsize="end"
+        android:lines="4"
         android:maxLines="5"
         android:singleLine="false"
-        android:lines="4"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +31,20 @@
         android:layout_marginBottom="81dp"
         android:text="+ Add To Cart"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="285dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="67dp"
+        android:text="Home"
+        app:layout_constraintBottom_toTopOf="@+id/addToCart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

@@ -17,6 +17,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView textView;
     private Button button;
     private String product;
+    private Button btnHome;
     Realm realm;
 
     @Override
@@ -28,6 +29,8 @@ public class DetailsActivity extends AppCompatActivity {
         product = intent.getStringExtra("message");
         textView = (TextView)findViewById(R.id.textView);
         button = (Button)findViewById(R.id.addToCart);
+        btnHome = (Button)findViewById(R.id.btnHome);
+
         Realm.init(this);
         realm = Realm.getDefaultInstance();
         textView.setText("Product Name : " +product+ "\nDate of manufacture : \nDate of expiry : \nprice : ");
@@ -52,7 +55,13 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
-
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailsActivity.this,HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

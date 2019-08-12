@@ -48,8 +48,10 @@ public class HomeActivity extends AppCompatActivity {
         productList.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-
-        getNames();
+        for (int i = 0; i<8; i++){
+            list.add("Product" + i);
+        }
+        //getNames();
 
         adapter = new productAdapter(this,list);
         productList.setAdapter(adapter);

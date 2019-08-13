@@ -3,8 +3,8 @@ package com.example.stockapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,12 +33,11 @@ public class HomeActivity extends AppCompatActivity {
     private List<Product> list;
     private productAdapter adapter;
     private RequestQueue requestQueue;
-    private ImageButton cartButton;
 
     private String url = "http://172.16.2.139:8081/movies/get-all";
 
 
-    public static final int[] ProductImgs = {R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
+    public static final int[] ProductImgs = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,R.drawable.f,R.drawable.g,R.drawable.h};
 
 
     @Override
@@ -49,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         productList = (RecyclerView)findViewById(R.id.productList);
-        cartButton = (ImageButton)findViewById(R.id.cartButton);
+
 
         productList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -68,13 +67,28 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new productAdapter(this,list);
         productList.setAdapter(adapter);
 
-        cartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,CheckoutActivity.class);
-                startActivity(intent);
-            }
-        });
+
+
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id == R.id.action_cart){
+            Intent intent = new Intent(HomeActivity.this,CheckoutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
 
     }
 

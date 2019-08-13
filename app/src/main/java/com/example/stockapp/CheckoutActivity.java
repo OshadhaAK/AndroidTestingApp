@@ -44,7 +44,7 @@ public class CheckoutActivity extends AppCompatActivity {
         list = new ArrayList<>();
         for(Product product:products){
             list.add(product.getProductName());
-            output+=product.getProductName()+"\n";
+            //output+=product.getProductName()+"\n";
         }
 
         cartAdapter = new cartAdapter(this, list);

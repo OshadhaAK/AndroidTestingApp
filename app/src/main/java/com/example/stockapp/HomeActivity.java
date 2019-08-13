@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private String url = "http://172.16.2.139:8081/movies/get-all";
 
 
-    public static final int[] ProductImgs = {R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
+    public static final int[] ProductImgs = {R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
 
 
     @Override
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         productList.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i<8; i++){
             Product product = new Product();
             product.setProductName("Product" + i);
             product.setPrice(ProductImgs[i]);

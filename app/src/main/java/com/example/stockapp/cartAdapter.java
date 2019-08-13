@@ -4,22 +4,26 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import Models.Product;
+
 public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
         Context context;
-        List<String> list;
+        List<Product> list;
 
         public cartAdapter() {
                 }
 
-        public cartAdapter(Context context, List<String> list) {
+        public cartAdapter(Context context, List<Product> list) {
                 this.list = list;
                 this.context = context;
                 }
@@ -28,12 +32,22 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_row,parent,false);
-                return new ViewHolder(view);
+                ViewHolder viewHolder = new ViewHolder(view);
+                context = parent.getContext();
+                return viewHolder;
                 }
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-                holder.textView.setText(list.get(position));
+                Product product = list.get(position);
+                holder.textProduct.setText(product.getProductName());
+                holder.imgProduct.setImageResource(product.getPrice());
+                holder.cartList.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                });
                 }
 
         @Override
@@ -43,14 +57,16 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
         class ViewHolder extends RecyclerView.ViewHolder{
 
-            TextView textView;
-
+                ImageView imgProduct;
+                TextView textProduct;
+                CardView cartList;
 
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                textView = (TextView) itemView.findViewById(R.id.cartRow);
-
+                imgProduct = (ImageView)itemView.findViewById(R.id.imgProduct);
+                textProduct = (TextView)itemView.findViewById(R.id.textProduct);
+                cartList = (CardView)itemView.findViewById(R.id.cartRow);
             }
         }
 }

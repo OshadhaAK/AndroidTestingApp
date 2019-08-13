@@ -21,8 +21,13 @@ public class CheckoutActivity extends AppCompatActivity {
     private Button btnCheckout;
     private  Button btnBackToHome;
     private RecyclerView cartList;
-    private List<String>list;
+    private List<Product>list;
     private cartAdapter cartAdapter;
+
+    public List<String>Products;
+    public static final int[] ProductImgs = {R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +45,20 @@ public class CheckoutActivity extends AppCompatActivity {
         final RealmResults<Product> products = realm.where(Product.class).findAllAsync();
 
         products.load();
-        String output = "";
+        Products = new ArrayList<>();
+        for (Product product:products){
+            Products.add(product.getProductName());
+        }
         list = new ArrayList<>();
-        for(Product product:products){
-            list.add(product.getProductName());
-            //output+=product.getProductName()+"\n";
+        for (int i=0;i<Products.size();i++){
+            Product product = new Product();
+            product.setProductName(Products.get(i));
+            product.setPrice(ProductImgs[i]);
+
+            list.add(product);
         }
 
-        cartAdapter = new cartAdapter(this, list);
+        cartAdapter = new cartAdapter(this,list);
         cartList.setAdapter(cartAdapter);
 
         btnCheckout.setOnClickListener(new View.OnClickListener() {

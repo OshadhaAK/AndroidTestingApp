@@ -9,6 +9,7 @@ public class Product extends RealmObject {
     private String dataOfManufacture;
     private int price;
 
+
     public Product() {
     }
 

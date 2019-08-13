@@ -1,13 +1,17 @@
 package com.example.stockapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import Models.Product;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,10 +41,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Realm.init(this);
+        final Realm realm = Realm.getDefaultInstance();
+        final RealmResults<Product> products = realm.where(Product.class).findAllAsync();
+
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(userName.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                    RealmResults<Product> results = realm.where(Product.class).findAll();
+                    realm.beginTransaction();
+                    results.deleteAllFromRealm();
+                    realm.commitTransaction();
                     Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                     startActivity(intent);
                 }

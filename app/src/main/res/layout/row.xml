@@ -7,7 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/row"
+        android:layout_marginBottom="40dp"
         >
+        <FrameLayout
+            android:background="#FF0000"
+            android:layout_width="4dp"
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:layout_width="match_parent"

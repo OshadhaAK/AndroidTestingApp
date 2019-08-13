@@ -24,16 +24,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.Product;
+
 public class HomeActivity extends AppCompatActivity {
 
 
     private RecyclerView productList;
-    private List<String> list;
+    private List<Product> list;
     private productAdapter adapter;
     private RequestQueue requestQueue;
     private ImageButton cartButton;
 
     private String url = "http://172.16.2.139:8081/movies/get-all";
+
+
+    public static final int[] ProductImgs = {R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +54,15 @@ public class HomeActivity extends AppCompatActivity {
         productList.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        for (int i = 0; i<8; i++){
-            list.add("Product" + i);
+        for (int i = 0; i<5; i++){
+            Product product = new Product();
+            product.setProductName("Product" + i);
+            product.setPrice(ProductImgs[i]);
+
+            list.add(product);
         }
+
+
         //getNames();
 
         adapter = new productAdapter(this,list);
@@ -59,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, CheckoutActivity.class);
+                Intent intent = new Intent(HomeActivity.this,CheckoutActivity.class);
                 startActivity(intent);
             }
         });
@@ -76,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
                                 try {
                                     JSONObject jsonObject = response.getJSONObject(i);
                                     String name = jsonObject.get("name").toString();
-                                    list.add(name);
+                                    //list.add(name);
                                 } catch (JSONException e) {
                                     Log.e("Volley", "Invalid JSON Object.");
                                 }

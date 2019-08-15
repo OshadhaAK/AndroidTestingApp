@@ -45,7 +45,7 @@ public class HomeActivityTest {
         onView(withId(R.id.productList)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
         onView(withId(R.id.addToCart)).perform(click());
         onView(withId(R.id.buttonBackHome)).perform(click());
-        onView(withId(R.id.cartButton)).perform(click());
+        onView(withId(R.id.action_cart)).perform(click());
         onView(withId(R.id.cartList)).check(new RecyclerViewItemCountAssertion(3));
     }
 

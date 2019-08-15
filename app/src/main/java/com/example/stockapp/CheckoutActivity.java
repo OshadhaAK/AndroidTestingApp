@@ -25,7 +25,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private cartAdapter cartAdapter;
 
     public List<String>Products;
-    public static final int[] ProductImgs = {R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background};
+    public static final int[] ProductImgs = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,R.drawable.f,R.drawable.g,R.drawable.h};
 
 
 
